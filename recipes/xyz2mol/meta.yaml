@@ -1,0 +1,41 @@
+{% set repo_owner = "jensengroup" %}
+{% set repo_name = "xyz2mol" %}
+{% set package_name = "xyz2mol" %}
+{% set version = "1.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/{{ repo_owner }}/{{ repo_name }}/archive/{{ package_name }}-{{ version }}.tar.gz
+  sha256: d58439c548433adcda98e695be53e526ba940a4b9c44fb9a05d92cd495cdd47f
+  # sha256 is the preferred checksum -- you can get it for a file with:
+  #  `openssl sha256 <file name>`.
+  # You may need the openssl package, available on conda-forge:
+  #  `conda install openssl -c conda-forge``
+
+build:
+  noarch: python
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - rdkit
+    - numpy
+    - scipy
+    - networkx
+
+about:
+  home: https://github.com/jensengroup/xyz2mol
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.txt
+  summary: 'Module for generating rdkit molobj/smiles/molecular graph from free atoms'
+
+extra:
+  recipe-maintainers:
+    - charnley
